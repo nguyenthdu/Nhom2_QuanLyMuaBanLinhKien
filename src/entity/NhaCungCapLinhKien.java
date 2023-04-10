@@ -1,6 +1,6 @@
 package entity;
 
-public class NhaCungCap {
+public class NhaCungCapLinhKien {
 	private String MaNhaCungCap,TenNCC,DiaChi,SoDienThoai;
 
 	public String getMaNhaCungCap() {
@@ -35,19 +35,19 @@ public class NhaCungCap {
 		SoDienThoai = soDienThoai;
 	}
 
-	public NhaCungCap(String maNhaCungCap, String tenNCC, String diaChi,
-			String soDienThoai) {
+	public NhaCungCapLinhKien(String maNhaCungCap, String tenNCC, String diaChi,
+                              String soDienThoai) {
 		setMaNhaCungCap(maNhaCungCap);
 		setTenNCC(tenNCC);
 		setDiaChi(diaChi);
 		setSoDienThoai(soDienThoai);
 	}
-	public NhaCungCap(String ma){
+	public NhaCungCapLinhKien(String ma){
 		setMaNhaCungCap(ma);
 	}
-	public NhaCungCap(){
-		
+	public NhaCungCapLinhKien(){
+
 	}
 
-	
+
 }
