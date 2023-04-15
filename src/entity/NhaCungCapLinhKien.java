@@ -49,5 +49,13 @@ public class NhaCungCapLinhKien {
 
 	}
 
-
+	@Override
+	public String toString() {
+		return "NhaCungCapLinhKien{" +
+				"MaNhaCungCap='" + MaNhaCungCap + '\'' +
+				", TenNCC='" + TenNCC + '\'' +
+				", DiaChi='" + DiaChi + '\'' +
+				", SoDienThoai='" + SoDienThoai + '\'' +
+				'}';
+	}
 }

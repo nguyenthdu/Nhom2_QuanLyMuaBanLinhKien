@@ -26,7 +26,12 @@
 		public DanhMucLinhKien(String ma){
 			setMaDanhMuc(ma);
 		}
-	
-		
-		
+
+		@Override
+		public String toString() {
+			return "DanhMucLinhKien{" +
+					"maDanhMuc='" + maDanhMuc + '\'' +
+					", tenDanhMuc='" + tenDanhMuc + '\'' +
+					'}';
+		}
 	}

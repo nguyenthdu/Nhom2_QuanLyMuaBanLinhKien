@@ -12,8 +12,13 @@ public class DonDatHang {
 	public DonDatHang() {
 		super();
 	}
+
+	public DonDatHang(String maDonDatHang) {
+		this.maDonDatHang = maDonDatHang;
+	}
+
 	public DonDatHang(String maDonDatHang, KhachHang maKH, NhanVien maNV, Date ngayDat, Date ngayGiao, Date ngayChuyen,
-			String noiNhan) {
+					  String noiNhan) {
 		super();
 		this.maDonDatHang = maDonDatHang;
 		this.maKH = maKH;
