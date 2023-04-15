@@ -70,13 +70,5 @@ public class DonDatHang {
 		return "DonDatHang [maDonDatHang=" + maDonDatHang + ", ngayDat=" + ngayDat + ", ngayGiao=" + ngayGiao
 				+ ", ngayChuyen=" + ngayChuyen + ", noiNhan=" + noiNhan + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
