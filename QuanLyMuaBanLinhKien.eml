@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component inherit-compiler-output="true" inheritJdk="true">
+<component inherit-compiler-output="true" jdk="JavaSE-19" jdk_type="JavaSDK">
 	<output-test url="file://$MODULE_DIR$/out/test/QuanLyMuaBanLinhKien"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="java-dropdown-menu" value="project"/>
+	</levels>
 </component>
