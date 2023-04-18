@@ -6,17 +6,15 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FrmLinhKien extends JPanel  implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-    private final JTable table;
-	private final JTextField txtMaLinhKien;
-	private final JTextField txtTenLinhKien;
-	private final JTextField txtThoiGianBaoHanh;
-	private final JButton btnXoaRong;
+    private JTable table;
+	private JTextField txtMaLinhKien;
+	private JTextField txtTenLinhKien;
+	private JTextField txtThoiGianBaoHanh;
+	private JButton btnLamMoi;
 
 	private JComboBox<String> cbxDanhMuc;
 	private JComboBox<String> cbxNhaCungCap;
@@ -109,7 +107,7 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		/*
 		Nhà cung cấp
 		 */
-		JLabel lblNhaCungCap = new JLabel("Nhà Cung Cấp");
+		JLabel lblNhaCungCap = new JLabel("Nhà cung cấp");
 		lblNhaCungCap.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNhaCungCap.setBounds(734, 45, 132, 40);
 		panelThongTin.add(lblNhaCungCap);
@@ -161,7 +159,7 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		/*
 		Danh mục
 		 */
-		JLabel lblDanhMuc = new JLabel("Danh Mục");
+		JLabel lblDanhMuc = new JLabel("Danh mục");
 		lblDanhMuc.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblDanhMuc.setBounds(734, 100, 99, 40);
 		panelThongTin.add(lblDanhMuc);
@@ -192,10 +190,10 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		btnXoa.setBounds(700, 165, 200, 50);
 		panelThongTin.add(btnXoa);
 		//nút xóa rỗng
-		btnXoaRong = new JButton("Xóa rỗng");
-		btnXoaRong.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnXoaRong.setBounds(950, 165, 200, 50);
-		panelThongTin.add(btnXoaRong);
+		btnLamMoi = new JButton("Làm mới");
+		btnLamMoi.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnLamMoi.setBounds(950, 165, 200, 50);
+		panelThongTin.add(btnLamMoi);
 		// nút cập nhật
 		btnSua = new JButton("Cập nhật");
 		btnSua.addActionListener(new ActionListener() {
@@ -240,13 +238,13 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		btnLuu = new JButton("Lưu");
 		btnLuu.setVisible(false);
 		btnLuu.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnLuu.setBounds(390, 164, 200, 50);
+		btnLuu.setBounds(450, 165, 200, 50);
 		panelThongTin.add(btnLuu);
 
 		btnHuy = new JButton("Hủy");
 		btnHuy.setVisible(false);
 		btnHuy.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnHuy.setBounds(666, 164, 200, 50);
+		btnHuy.setBounds(700, 165, 200, 50);
 		panelThongTin.add(btnHuy);
 
 		cbxDanhMuc.setSelectedItem("Tất Cả");
@@ -258,10 +256,39 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		btnXoa.addActionListener(this);
 		btnLuu.addActionListener(this);
 		btnHuy.addActionListener(this);
+		btnLamMoi.addActionListener(this);
 	}
 
     @Override
     public void actionPerformed(ActionEvent e) {
+		Object o = e.getSource();
+		int n = 1;
+		if(o.equals(btnThem)) {
+			btnTim.setVisible(false);
+			btnThem.setVisible(false);
+			btnSua.setVisible(false);
+			btnXoa.setVisible(false);
 
+			btnLuu.setVisible(true);
+			btnHuy.setVisible(true);
+			btnLamMoi.setVisible(true);
+			txtMaLinhKien.setEditable(false);
+			//txtTenLinhKien.setText(TaoMaQuanAo());
+			n = 1;
+		}
+		if(o.equals(btnHuy)){
+			btnTim.setVisible(true);
+			btnThem.setVisible(true);
+			btnSua.setVisible(true);
+			btnXoa.setVisible(true);
+
+			btnLuu.setVisible(false);
+			btnHuy.setVisible(false);
+			btnLamMoi.setVisible(true);
+			txtMaLinhKien.setEditable(false);
+			//txtMaLinhKien.setText(TaoMaQuanAo());
+			//DocDuLieu();
+			//XoaTrang();
+		}
     }
 }
