@@ -1,10 +1,18 @@
 package gui;
 
-import javax.swing.*;
+import java.awt.*;
 
 public class RunApp {
    public static void main(String args[]) {
-        frmManHinhChinh frm = new frmManHinhChinh();
-        frm.setVisible(true);
+        EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FrmManHinhChinh frame = new FrmManHinhChinh();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
     }
 }
