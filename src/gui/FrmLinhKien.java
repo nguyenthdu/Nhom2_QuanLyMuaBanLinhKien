@@ -281,7 +281,7 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 				txtSoLuong.setText(model.getValueAt(i, 5).toString());
 				cbxDanhMuc.setSelectedItem(model.getValueAt(i, 6).toString());
 			}
-		});
+		});*/
 		//docDuLieu();
 	}
 
@@ -339,11 +339,8 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 //					}
 //				}
 //			}
-//		}*/
-	}
+//		}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
 
-	}
+
 }
