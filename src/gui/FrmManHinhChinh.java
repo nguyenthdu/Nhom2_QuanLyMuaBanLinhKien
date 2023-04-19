@@ -38,7 +38,7 @@ public class FrmManHinhChinh extends JFrame implements ActionListener, MouseList
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setTitle("HỆ THỐNG QUẢN LÝ BÁN HÀNG TAI CỬA HÀNG THỜI TRANG");
+		setTitle("HỆ THỐNG QUẢN LÝ BÁN LINH KIỆN");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);

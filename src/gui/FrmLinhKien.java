@@ -256,14 +256,14 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		/*
 		TODO: các phương thức xử lý
 		 */
-		//Nha cung cap
+		/*//Nha cung cap
 		nhaCungCapDAO = new NhaCungCapDAO();
-		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.getDSNCC();
+		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
 		for (NhaCungCapLinhKien ncc : dsNhaCungCap) {
 			cbxNhaCungCap.addItem(ncc.getTenNCC());
 		}
 		//Danh muc
-		/*danhMucDAO = new DanhMucDAO();
+		danhMucDAO = new DanhMucDAO();
 		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
 		for(DanhMucLinhKien dm : dsDanhMuc) {
 			cbxDanhMuc.addItem(dm.getTenDanhMuc());
@@ -326,21 +326,25 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		txtSoLuong.setText("");
 		cbxDanhMuc.setSelectedItem("Tất Cả");
 	}
-//	public void docDuLieu() {
-//		ArrayList<LinhKien> dsLinhKien = linhKienDAO.layThongTin();
-//		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
-//		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
-//		model.setRowCount(0);
-//		for (LinhKien lk : dsLinhKien) {
-//			for(NhaCungCapLinhKien ncc : dsNhaCungCap) {
-//				for(DanhMucLinhKien dm : dsDanhMuc) {
-//					if(lk.g().equals(ncc.getMaNhaCungCap()) && lk.getMaDanhMuc().equals(dm.getMaDanhMuc())) {
-//						model.addRow(new Object[] {lk.getMaLinhKien(), lk.getTenLinhKien(), ncc.getTenNhaCungCap(), lk.getThoiGianBaoHanh(), lk.getGiaBan(), lk.getSoLuong(), dm.getTenDanhMuc()});
-//					}
-//				}
-//			}
-//		}
-
+	/*
+	ĐỌC DỮ LIỆU TỪ DATABASE VÀ HIỂN THỊ LÊN TABLE
+	 */
+	/*public void docDuLieu() {
+		ArrayList<LinhKien> dsLinhKien = linhKienDAO.layThongTin();
+		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
+		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
+		model.setRowCount(0);
+		for (LinhKien lk : dsLinhKien) {
+			for (NhaCungCapLinhKien ncc : dsNhaCungCap) {
+				for (DanhMucLinhKien dm : dsDanhMuc) {
+					if (ncc.getMaNhaCungCap().equalsIgnoreCase(lk.getNhaCungCapLinhKien().getMaNhaCungCap())
+							&& dm.getMaDanhMuc().equalsIgnoreCase(lk.getDanhMucLinhKien().getMaDanhMuc())) {
+						model.addRow(new Object[]{lk.getMaLinhKien(), lk.getTenLinhKien(), ncc.getTenNCC(), lk.getThoiGianBaoHanh(), lk.getGiaBan(), lk.getSoLuong(), dm.getTenDanhMuc()});
+					}
+				}
+			}
+		}
+	}*/
 
 
 }
