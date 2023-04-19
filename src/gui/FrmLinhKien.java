@@ -45,11 +45,11 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 
 
 
-	public FrmLinhKien(){
+	public FrmLinhKien() {
 		//doc du lieu tu database
 		linhKienDAO = new LinhKienDAO();
 		//setsize
-        setMaximumSize(new Dimension(1500, 1030));
+		setMaximumSize(new Dimension(1500, 1030));
 		setMinimumSize(new Dimension(1500, 1030));
 		setMaximumSize(new Dimension(1500, 1030));
 
@@ -218,7 +218,7 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(0, 359, 1540, 464);
 		add(scrollPane_1);
-		String[] Header = { "Mã Linh Kiện", "Tên Linh Kiện", "Nhà Cung cấp","Thời Gian BH", "Giá Bán", "Số Lượng", "Danh Mục"};
+		String[] Header = {"Mã Linh Kiện", "Tên Linh Kiện", "Nhà Cung cấp", "Thời Gian BH", "Giá Bán", "Số Lượng", "Danh Mục"};
 		model = new DefaultTableModel(Header, 0);
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -258,12 +258,12 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		 */
 		//Nha cung cap
 		nhaCungCapDAO = new NhaCungCapDAO();
-		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
-		for(NhaCungCapLinhKien ncc : dsNhaCungCap) {
-			cbxNhaCungCap.addItem(ncc.getTenNhaCungCap());
+		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.getDSNCC();
+		for (NhaCungCapLinhKien ncc : dsNhaCungCap) {
+			cbxNhaCungCap.addItem(ncc.getTenNCC());
 		}
 		//Danh muc
-		danhMucDAO = new DanhMucDAO();
+		/*danhMucDAO = new DanhMucDAO();
 		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
 		for(DanhMucLinhKien dm : dsDanhMuc) {
 			cbxDanhMuc.addItem(dm.getTenDanhMuc());
@@ -282,7 +282,7 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 				cbxDanhMuc.setSelectedItem(model.getValueAt(i, 6).toString());
 			}
 		});
-		docDuLieu();
+		//docDuLieu();
 	}
 
     @Override
@@ -326,18 +326,24 @@ public class FrmLinhKien extends JPanel  implements ActionListener {
 		txtSoLuong.setText("");
 		cbxDanhMuc.setSelectedItem("Tất Cả");
 	}
-	public void docDuLieu() {
-		ArrayList<LinhKien> dsLinhKien = linhKienDAO.layThongTin();
-		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
-		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
-		model.setRowCount(0);
-		for (LinhKien lk : dsLinhKien) {
-			for(NhaCungCapLinhKien ncc : dsNhaCungCap) {
-				for(DanhMucLinhKien dm : dsDanhMuc) {
-					if(lk.g().equals(ncc.getMaNhaCungCap()) && lk.getMaDanhMuc().equals(dm.getMaDanhMuc())) {
-						model.addRow(new Object[] {lk.getMaLinhKien(), lk.getTenLinhKien(), ncc.getTenNhaCungCap(), lk.getThoiGianBaoHanh(), lk.getGiaBan(), lk.getSoLuong(), dm.getTenDanhMuc()});
-					}
-				}
-			}
-		}
+//	public void docDuLieu() {
+//		ArrayList<LinhKien> dsLinhKien = linhKienDAO.layThongTin();
+//		ArrayList<NhaCungCapLinhKien> dsNhaCungCap = nhaCungCapDAO.LayThongTin();
+//		ArrayList<DanhMucLinhKien> dsDanhMuc = danhMucDAO.LayThongTin();
+//		model.setRowCount(0);
+//		for (LinhKien lk : dsLinhKien) {
+//			for(NhaCungCapLinhKien ncc : dsNhaCungCap) {
+//				for(DanhMucLinhKien dm : dsDanhMuc) {
+//					if(lk.g().equals(ncc.getMaNhaCungCap()) && lk.getMaDanhMuc().equals(dm.getMaDanhMuc())) {
+//						model.addRow(new Object[] {lk.getMaLinhKien(), lk.getTenLinhKien(), ncc.getTenNhaCungCap(), lk.getThoiGianBaoHanh(), lk.getGiaBan(), lk.getSoLuong(), dm.getTenDanhMuc()});
+//					}
+//				}
+//			}
+//		}*/
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+	}
 }
