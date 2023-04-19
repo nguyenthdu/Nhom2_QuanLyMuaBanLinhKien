@@ -3,7 +3,4 @@
 	<output-test url="file://$MODULE_DIR$/out/test/QuanLyMuaBanLinhKien"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
-	<levels>
-		<level name="java-dropdown-menu" value="project"/>
-	</levels>
 </component>

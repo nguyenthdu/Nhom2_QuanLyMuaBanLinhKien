@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import connectDB.ConnectDB;
 import entity.KhachHang;
 
-public class KhachHangDao {
+public class KhachHangDAO {
 	// Tìm khách hàng theo sđt
 	public KhachHang getKHSDT(String soDTh) {
 		KhachHang kh = null ;
@@ -31,7 +31,7 @@ public class KhachHangDao {
 				String eMail = rs.getString("email");
 				String diaChi = rs.getString("diaChiKH");
 				kh = new KhachHang(maKH, tenKH, soDT, eMail, diaChi);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,7 +132,7 @@ public class KhachHangDao {
 			stmt.setString(3, kh.getSoDT());
 			stmt.setString(5, kh.geteMail());
 			stmt.setString(4, kh.getDiaChi());
-			
+
 			return stmt.executeUpdate() > 0;
 
 		} catch (SQLException e) {

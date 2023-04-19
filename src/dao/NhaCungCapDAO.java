@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import connectDB.ConnectDB;
 import entity.NhaCungCapLinhKien;
 
-public class NhaCungCapDao {
+public class NhaCungCapDAO {
 	// Tìm số điện thoại
 	public NhaCungCapLinhKien timSDT(String sdt) {
 		NhaCungCapLinhKien ncc = null;
@@ -28,7 +28,7 @@ public class NhaCungCapDao {
 				String DiaChi = rs.getString("diaChi");
 				String SoDienThoai = rs.getString("sdtNCC");
 				 ncc = new NhaCungCapLinhKien(MaNhaCungCap, TenNCC, DiaChi, SoDienThoai);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
