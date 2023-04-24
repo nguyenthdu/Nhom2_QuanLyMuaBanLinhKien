@@ -21,7 +21,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -45,7 +54,7 @@ import entity.KhachHang;
 import entity.NhanVien;
 import entity.LinhKien;
 
-public class FrmHoaDon extends JPanel implements ActionListener {
+public class Test extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JTable tblChITietHoaDon;
 	private JTable tblHoaDon;
@@ -74,7 +83,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 	NumberFormat vn = NumberFormat.getInstance(localeVN);
 
 
-	public FrmHoaDon() {
+	public Test() {
 		setMaximumSize(new Dimension(1500, 1030));
 		setMinimumSize(new Dimension(1500, 1030));
 		setMaximumSize(new Dimension(1500, 1030));
@@ -91,16 +100,12 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		nv_dao = new NhanVienDAO();
 		hd_dao = new HoaDonDAO();
 		cthd_dao = new ChiTietHoaDonDAO();
-		JPanel panelTitle = new JPanel();
 		JLabel lblTitLe = new JLabel("DANH SÁCH HOÁ ĐƠN");
 		lblTitLe.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblTitLe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitLe.setFont(new Font("Arial", Font.BOLD, 25));
-		panelTitle.add(lblTitLe);
-		panelTitle.setBounds(0, 0, 1540, 60);
-		panelTitle.setBackground(new Color(148, 162, 242));
-		lblTitLe.setForeground(Color.WHITE);
-		add(panelTitle);
+		lblTitLe.setBounds(0, 10, 1540, 37);
+		add(lblTitLe);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -141,7 +146,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		ArrayList<NhanVien> dsnv = nv_dao.layThongTin();
 		for (NhanVien nv : dsnv) {
 
-			cBNhanVienThanhToan.addItem(nv.getHoTen());
+
 		}
 		panel_1.add(cBNhanVienThanhToan);
 
@@ -183,7 +188,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		btnInHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnInHoaDon.setBounds(1167, 65, 150, 40);
 		panel_1.add(btnInHoaDon);
-		btnLamMoi = new JButton("Làm mới");
+		btnLamMoi = new JButton("Làm mới dữ liệu");
 		btnLamMoi.setBounds(1357, 65, 150, 40);
 		panel_1.add(btnLamMoi);
 		btnLamMoi.addActionListener(new ActionListener() {
@@ -217,7 +222,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		});
 
 
-		JLabel lblChiTietHD = new JLabel("CHI TIẾT HÓA ĐƠN");
+		JLabel lblChiTietHD = new JLabel("Chi Tiết Hóa Đơn");
 		lblChiTietHD.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChiTietHD.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblChiTietHD.setBounds(0, 470, 1540, 37);
@@ -239,32 +244,6 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		lblDonHang.setBounds(117, 470, 126, 37);
 		add(lblDonHang);
 		btnInHoaDon.addActionListener(this);
-		btnLamMoi.addActionListener(this);
-		btnTimHoaDon.addActionListener(this);
-
-		// thay đổi màu của tất cả các buttom thành màu #716DF2 và chữ của các buttom thành màu trắng
-		btnTimHoaDon.setBackground(new Color(113, 109, 242));
-		btnTimHoaDon.setForeground(Color.WHITE);
-		btnInHoaDon.setBackground(new Color(113, 109, 242));
-		btnInHoaDon.setForeground(Color.WHITE);
-		btnLamMoi.setBackground(new Color(113, 109, 242));
-		btnLamMoi.setForeground(Color.WHITE);
-		btnTimHoaDon.addActionListener(this);
-		btnInHoaDon.addActionListener(this);
-		cBNhanVienThanhToan.setBackground(new Color(148, 162, 242));
-		cBNhanVienThanhToan.setForeground(Color.WHITE);
-
-		tblHoaDon.setBackground(new Color(236, 242, 255));
-		tblChITietHoaDon.setBackground(new Color(236, 242, 255));
-		tblHoaDon.getTableHeader().setBackground(new Color(148, 162, 242));
-		tblChITietHoaDon.getTableHeader().setBackground(new Color(148, 162, 242));
-		panel_1.setBackground(new Color(236, 242, 255));
-		// thêm icon vào button với đường dẫn src/icon
-		btnTimHoaDon.setIcon(new ImageIcon("src/icon/search.png"));
-		btnInHoaDon.setIcon(new ImageIcon("src/icon/completed2.png"));
-		btnLamMoi.setIcon(new ImageIcon("src/icon/loading.png"));
-		setBackground(new Color(149, 189, 255));
-
 	}
 
 

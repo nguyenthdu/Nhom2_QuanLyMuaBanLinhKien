@@ -49,55 +49,99 @@ public class FrmManHinhChinh extends JFrame implements ActionListener, MouseList
          ==================================================================*/
         JMenuBar menuBar = new JMenuBar();
         menuBar.setBounds(0,0,1920,50);
+        // thêm màu cho menu với  mã màu là #716DF2
+        menuBar.setBackground(Color.decode("#716DF2"));
+
+
         contentPane.add(menuBar);
         JMenu mnTrangChu = new JMenu("Trang chủ");
         mnTrangChu.setFont(new Font("Arial", Font.PLAIN, 20));
+        // thay đổi màu chữ thành màu trắng
+        mnTrangChu.setForeground(Color.WHITE);
         menuBar.add(mnTrangChu);
+        // thêm icon
+        ImageIcon iconTC = new ImageIcon("src/icon/home2.png");
+        mnTrangChu.setIcon(iconTC);
         /*
         MENU LINH KIEN
          */
         JMenu mnLinhKien = new JMenu("Linh kiện");
         mnLinhKien.setFont(new Font("Arial", Font.PLAIN, 20));
+        // thay đổi màu chữ thành màu trắng
+        mnLinhKien.setForeground(Color.WHITE);
         menuBar.add(mnLinhKien);
+        ImageIcon iconLK = new ImageIcon("src/icon/development2.png");
+        mnLinhKien.setIcon(iconLK);
         JMenuItem mntmThongTinLinhKien = new JMenuItem("Thông tin linh kiện");
         mntmThongTinLinhKien.setFont(new Font("Arial", Font.PLAIN, 20));
+        // khi  chạy chương trình lên thì sẽ hiển thị màn hình mntmThongTinLinhKien
+
+
+
+
+
         mnLinhKien.add(mntmThongTinLinhKien);
+        ImageIcon iconTT = new ImageIcon("src/icon/product3.png");
+        mntmThongTinLinhKien.setIcon(iconTT);
         JMenuItem mntmDanhMuclinhKien = new JMenuItem("Danh mục");
         mntmDanhMuclinhKien.setFont(new Font("Arial", Font.PLAIN, 20));
         mnLinhKien.add(mntmDanhMuclinhKien);
+        ImageIcon iconDM = new ImageIcon("src/icon/dm2.png");
+        mntmDanhMuclinhKien.setIcon(iconDM);
         JMenuItem mntmNhaCungCap = new JMenuItem("Nhà cung cấp");
         mntmNhaCungCap.setFont(new Font("Arial", Font.PLAIN, 20));
+        ImageIcon iconNCC = new ImageIcon("src/icon/ncc.png");
+        mntmNhaCungCap.setIcon(iconNCC);
         mnLinhKien.add(mntmNhaCungCap);
-        /*
-MENU NHAN VIEN
-         */
-        JMenu mnNhanVien = new JMenu("Nhân viên");
-        mnNhanVien.setFont(new Font("Arial", Font.PLAIN, 20));
-        menuBar.add(mnNhanVien);
-        /*
+         /*
         MENU KHACH HANG
          */
         JMenu mnKhachHang = new JMenu("Khách hàng");
         mnKhachHang.setFont(new Font("Arial", Font.PLAIN, 20));
+        // thay đổi màu chữ thành màu trắng
+        mnKhachHang.setForeground(Color.WHITE);
         menuBar.add(mnKhachHang);
+        ImageIcon iconKH = new ImageIcon("src/icon/customer2.png");
+        mnKhachHang.setIcon(iconKH);
+
+        JMenuItem mntmThongTinKhachHang = new JMenuItem("Thông tin khách hàng");
+        mntmThongTinKhachHang.setFont(new Font("Arial", Font.PLAIN, 20));
+        ImageIcon iconTTKH = new ImageIcon("src/icon/cs2.png");
+        mntmThongTinKhachHang.setIcon(iconTTKH);
+        mnKhachHang.add(mntmThongTinKhachHang);
         /*
-        MENU BAN HANG
+        MENU NHAN VIEN
          */
-        JMenu mnBanHang = new JMenu("Bán hàng");
-        mnBanHang.setFont(new Font("Arial", Font.PLAIN, 20));
-        menuBar.add(mnBanHang);
-        /*
-        MENU HOA DON
-         */
-        JMenu mnHoaDon = new JMenu("Hóa đơn");
-        mnHoaDon.setFont(new Font("Arial", Font.PLAIN, 20));
-        menuBar.add(mnHoaDon);
-        /*
-        MENU DON DAT HANG
-         */
-        JMenu mnDonDatHang = new JMenu("Đơn đặt hàng");
-        mnDonDatHang.setFont(new Font("Arial", Font.PLAIN, 20));
-        menuBar.add(mnDonDatHang);
+        JMenu mnNhanVien = new JMenu("Nhân viên");
+        mnNhanVien.setFont(new Font("Arial", Font.PLAIN, 20));
+        // thay đổi màu chữ thành màu trắng
+        mnNhanVien.setForeground(Color.WHITE);
+        menuBar.add(mnNhanVien);
+        ImageIcon iconNV = new ImageIcon("src/icon/division2.png");
+        mnNhanVien.setIcon(iconNV);
+
+        JMenuItem mntmThongTinNhanVien = new JMenuItem("Thông tin nhân viên");
+        mntmThongTinNhanVien.setFont(new Font("Arial", Font.PLAIN, 20));
+        ImageIcon iconTTNV = new ImageIcon("src/icon/e2.png");
+        mntmThongTinNhanVien.setIcon(iconTTNV);
+        mnNhanVien.add(mntmThongTinNhanVien);
+
+        JMenuItem mntmBanHang = new JMenuItem("Bán hàng");
+        mntmBanHang.setFont(new Font("Arial", Font.PLAIN, 20));
+        mnNhanVien.add(mntmBanHang);
+        ImageIcon iconBH = new ImageIcon("src/icon/sales2.png");
+        mntmBanHang.setIcon(iconBH);
+        JMenuItem mntmHoaDon = new JMenuItem("Xem hóa đơn");
+        mntmHoaDon.setFont(new Font("Arial", Font.PLAIN, 20));
+        mnNhanVien.add(mntmHoaDon);
+        ImageIcon iconHD = new ImageIcon("src/icon/completed2.png");
+        mntmHoaDon.setIcon(iconHD);
+        JMenuItem mntmDonDatHang = new JMenuItem("Xem đơn đặt hàng");
+        mntmDonDatHang.setFont(new Font("Arial", Font.PLAIN, 20));
+        mnNhanVien.add(mntmDonDatHang);
+        ImageIcon iconDDH = new ImageIcon("src/icon/order2.png");
+        mntmDonDatHang.setIcon(iconDDH);
+
         /*
         Liên kết các panel
          */
@@ -114,6 +158,7 @@ MENU NHAN VIEN
                 panelBody.removeAll();
                 panelBody.add(new FrmTrangChu());
                 panelBody.validate();
+                contentPane.add(panelBody);
             }
         });
         /*
@@ -152,7 +197,7 @@ MENU NHAN VIEN
         /*
         Liên kết form nhân viên
          */
-        mnNhanVien.addActionListener(new ActionListener() {
+        mntmThongTinNhanVien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
@@ -160,21 +205,11 @@ MENU NHAN VIEN
                 panelBody.validate();
             }
         });
-        /*
-        Liên kết form khách hàng
-         */
-        mnKhachHang.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panelBody.removeAll();
-                panelBody.add(frmKhachHang);
-                panelBody.validate();
-            }
-        });
+
         /*
         Liên kết form bán hàng
          */
-        mnBanHang.addActionListener(new ActionListener() {
+        mntmBanHang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
@@ -185,7 +220,7 @@ MENU NHAN VIEN
         /*
         Liên kết form hóa đơn
          */
-        mnHoaDon.addActionListener(new ActionListener() {
+        mntmHoaDon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
@@ -196,7 +231,7 @@ MENU NHAN VIEN
         /*
         Liên kết form đơn đặt hàng
          */
-        mnDonDatHang.addActionListener(new ActionListener() {
+        mntmDonDatHang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panelBody.removeAll();
@@ -204,7 +239,18 @@ MENU NHAN VIEN
                 panelBody.validate();
             }
         });
-
+/*
+        Liên kết form khách hàng
+         */
+        mntmThongTinKhachHang.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelBody.removeAll();
+                panelBody.add(frmKhachHang);
+                panelBody.validate();
+            }
+        });
+        mntmThongTinLinhKien.doClick();
     }
 
 

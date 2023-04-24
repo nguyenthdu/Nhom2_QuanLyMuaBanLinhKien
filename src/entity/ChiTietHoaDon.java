@@ -1,21 +1,17 @@
 package entity;
 
-import java.util.List;
-
 public class ChiTietHoaDon {
     private LinhKien linhKien;
     private int soLuong;
-    private double khuyenMai;
     private HoaDon hoaDon;
     private DonDatHang donDatHang;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(LinhKien linhKien, int soLuong, double khuyenMai, HoaDon hoaDon, DonDatHang donDatHang) {
+    public ChiTietHoaDon(LinhKien linhKien, int soLuong, HoaDon hoaDon, DonDatHang donDatHang) {
         this.linhKien = linhKien;
         this.soLuong = soLuong;
-        this.khuyenMai = khuyenMai;
         this.hoaDon = hoaDon;
         this.donDatHang = donDatHang;
     }
@@ -34,14 +30,6 @@ public class ChiTietHoaDon {
 
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
-    }
-
-    public double getKhuyenMai() {
-        return khuyenMai;
-    }
-
-    public void setKhuyenMai(double khuyenMai) {
-        this.khuyenMai = khuyenMai;
     }
 
     public HoaDon getHoaDon() {
@@ -65,7 +53,7 @@ public class ChiTietHoaDon {
         return "ChiTietHoaDon{" +
                 "linhKien=" + linhKien +
                 ", soLuong=" + soLuong +
-                ", khuyenMai=" + khuyenMai +
+
                 ", hoaDon=" + hoaDon +
                 ", donDatHang=" + donDatHang +
                 '}';

@@ -3,4 +3,10 @@
 	<output-test url="file://$MODULE_DIR$/out/test/QuanLyMuaBanLinhKien"/>
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="sqljdbc4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../../../QuanLyMuaBanLinhKien/src/lib/sqljdbc4.jar!/"/>
+	</lib>
+	<lib name="jcalendar-1.4.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/../../../QuanLyMuaBanLinhKien/src/lib/jcalendar-1.4.jar!/"/>
+	</lib>
 </component>

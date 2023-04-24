@@ -5,11 +5,11 @@ public class LinhKien {
     private String tenLinhKien;
     private int soLuong;
     private double giaBan;
-    private double thoiGianBaoHanh;
+    private int thoiGianBaoHanh;
     private DanhMucLinhKien danhMucLinhKien;
     private NhaCungCapLinhKien nhaCungCapLinhKien;
 
-    public LinhKien(String maLinhKien, String tenLinhKien, int soLuong, double giaBan, double thoiGianBaoHanh, DanhMucLinhKien danhMucLinhKien, NhaCungCapLinhKien nhaCungCapLinhKien) {
+    public LinhKien(String maLinhKien, String tenLinhKien, int soLuong, double giaBan, int thoiGianBaoHanh, DanhMucLinhKien danhMucLinhKien, NhaCungCapLinhKien nhaCungCapLinhKien) {
         this.maLinhKien = maLinhKien;
         this.tenLinhKien = tenLinhKien;
         this.soLuong = soLuong;
@@ -58,11 +58,11 @@ public class LinhKien {
         this.giaBan = giaBan;
     }
 
-    public double getThoiGianBaoHanh() {
+    public int getThoiGianBaoHanh() {
         return thoiGianBaoHanh;
     }
 
-    public void setThoiGianBaoHanh(double thoiGianBaoHanh) {
+    public void setThoiGianBaoHanh(int thoiGianBaoHanh) {
         this.thoiGianBaoHanh = thoiGianBaoHanh;
     }
 

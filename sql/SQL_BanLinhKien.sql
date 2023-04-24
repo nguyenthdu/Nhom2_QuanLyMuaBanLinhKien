@@ -16,7 +16,7 @@ CREATE TABLE LinhKien (
     tenLinhKien NVARCHAR(100) NOT NULL,
     soLuong INT NOT NULL,
     giaBan FLOAT NOT NULL,
-    thoiGianBaoHanh FLOAT NOT NULL,
+    thoiGianBaoHanh INT NOT NULL,
     maDanhMuc NVARCHAR(20) NOT NULL,
     maNhaCungCap NVARCHAR(20) NOT NULL,
     FOREIGN KEY (maDanhMuc) REFERENCES DanhMucLinhKien(maDanhMuc),
