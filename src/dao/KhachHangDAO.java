@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import connectDB.ConnectDB;
 
 import entity.KhachHang;
-import entity.NhanVien;
 
 import javax.swing.*;
 
@@ -60,9 +58,9 @@ public class KhachHangDAO {
 			statement = con.prepareStatement(SQL);
 			statement.setString(1, kh.getMaKH());
 			statement.setString(2, kh.getTenKH());
-			statement.setString(3, kh.getSoDT());
+			statement.setString(3, kh.getDiaChiKH());
 			statement.setString(4, kh.geteMail());
-			statement.setString(5, kh.getDiaChi());
+			statement.setString(5, kh.getSoDT());
 			n= statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,9 +80,9 @@ public class KhachHangDAO {
 			String SQL = "UPDATE KhachHang SET tenKH = ?, soDT = ?, eMail = ?, diaChi = ? WHERE maKH = ?";
 			statement = con.prepareStatement(SQL);
 			statement.setString(1, khachHang.getTenKH());
-			statement.setString(2, khachHang.getSoDT());
+			statement.setString(2, khachHang.getDiaChiKH());
 			statement.setString(3, khachHang.geteMail());
-			statement.setString(4, khachHang.getDiaChi());
+			statement.setString(4, khachHang.getSoDT());
 			statement.setString(5, khachHang.getMaKH());
 			n = statement.executeUpdate();
 
@@ -138,6 +136,42 @@ public class KhachHangDAO {
             }
         }
         return false;
+	}
+	public KhachHang TimKhachHang(String id) {
+		KhachHang kh = new KhachHang();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		try {
+
+			String sql = "select * from KhachHang where maKH=?";
+			statement = con.prepareStatement(sql);
+			statement.setString(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+
+				String maKH = rs.getString(1);
+				String HoTenKH = rs.getString(2);
+				String SDT = rs.getString(3);
+				String  eMail = rs.getString(4);
+				String DiaChi = rs.getString(5);
+
+				kh = new KhachHang(maKH, HoTenKH, DiaChi,eMail, SDT);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return kh;
 	}
 
 

@@ -66,56 +66,9 @@ GO
 CREATE TABLE ChiTietHD (
     maLinhKien NVARCHAR(20) NOT NULL,
     maHoaDon NVARCHAR(20) NOT NULL,
-	maDonDatHang NVARCHAR(20) NOT NULL,
     soLuong INT NOT NULL,
     PRIMARY KEY (maLinhKien, maHoaDon, maDonDatHang),
     FOREIGN KEY (maLinhKien) REFERENCES LinhKien(maLinhKien),
     FOREIGN KEY (maHoaDon) REFERENCES HoaDon(maHoaDon),
 	FOREIGN KEY (maDonDatHang) REFERENCES DonDatHang(maDonDatHang)
 );
-GO
---Insert danh mục
-INSERT INTO DanhMucLinhKien (maDanhMuc, tenDanhMuc)
-VALUES 
-('DM0001', 'Mainboard'),
-('DM0002', 'CPU'),
-('DM0003', 'RAM');
-GO
---Insert nhà cung cấp
-INSERT INTO NhaCungCapLinhKien (maNhaCungCap, tenNCC, diaChi, soDienThoai)
-VALUES 
-('NCC0001', 'Công ty TNHH ABC', 'Hà Nội', '0987654321'),
-('NCC0002', 'Công ty TNHH XYZ', 'Hồ Chí Minh', '0912345678'),
-('NCC0003', 'Công ty TNHH PQR', 'Đà Nẵng', '0967890123'),
-('NCC0004', 'Công ty TNHH MNO', 'Nha Trang', '0901234567'),
-('NCC0005', 'Công ty TNHH UVW', 'Hải Phòng', '0976543210');
-GO
---Insert linh kiện
-INSERT INTO LinhKien (maLinhKien, tenLinhKien, soLuong, giaBan, thoiGianBaoHanh, maDanhMuc, maNhaCungCap)
-VALUES 
-('LK0001', 'Mainboard Asus B450M-A', 30, 2500000, 24, 'DM001', 'NCC001'),
-('LK0002', 'Mainboard MSI B450 Tomahawk', 25, 3200000, 36, 'DM001', 'NCC001'),
-('LK0003', 'CPU Intel Core i7-10700K', 15, 9000000, 12, 'DM002', 'NCC002'),
-('LK0004', 'CPU AMD Ryzen 5 5600X', 20, 7200000, 36, 'DM002', 'NCC002'),
-('LK0005', 'RAM Kingston HyperX Fury DDR4 8GB', 40, 1500000, 36, 'DM003', 'NCC003'),
-('LK0006', 'RAM G.Skill Trident Z RGB DDR4 16GB', 30, 3500000, 36, 'DM003', 'NCC003'),
-('LK0007', 'HDD Seagate Barracuda 2TB', 10, 2000000, 24, 'DM001', 'NCC004'),
-('LK0008', 'SSD Samsung 970 Evo Plus NVMe M.2 1TB', 15, 5500000, 36, 'DM001', 'NCC004'),
-('LK0009', 'Case Cooler Master MasterBox Q300L', 25, 1200000, 24, 'DM003', 'NCC005'),
-('LK0010', 'Case NZXT H510', 20, 2400000, 36, 'DM002', 'NCC005');
-GO
---Insert khách hàng
-INSERT INTO KhachHang (maKH, tenKH, soDT, eMail, diaChi)
-VALUES ('KH0004', 'Trần Thị Bình', '0987654321', 'binhtran@gmail.com', '50 Nguyễn Văn Cừ, Hà Nội'),
-       ('KH0005', 'Nguyễn Văn Nam', '0909123456', 'namnguyen@gmail.com', '25 Nguyễn Trãi, TP.HCM'),
-       ('KH0006', 'Lê Thị Mai', '0967123456', 'maile@gmail.com', '30 Nguyễn Thị Minh Khai, Đà Nẵng'),
-       ('KH0007', 'Phạm Thị Thu', '0978234567', 'thupham@gmail.com', '45 Lê Lợi, Huế'),
-       ('KH0008', 'Vũ Ngọc Quỳnh', '0934123456', 'quynhvu@gmail.com', '40 Nguyễn Khánh Toàn, Hà Nội');
-GO
---Insert nhân viên
-INSERT INTO NhanVien (maNhanVien, hoTen, ngaySinh, diaChi, soDT, eMail)
-VALUES ('NV0004', 'Nguyễn Thị Thùy', '1990-05-15', '25 Hoàng Diệu, Hà Nội', '0987654321', 'thuynguyen@gmail.com'),
-       ('NV0005', 'Lê Văn Hiếu', '1995-03-12', '120 Phố Huế, Hà Nội', '0909123456', 'hieule@gmail.com'),
-       ('NV0006', 'Đặng Minh Hiếu', '1992-10-05', '60 Trần Phú, TP.HCM', '0967123456', 'hieudang@gmail.com'),
-       ('NV0007', 'Nguyễn Anh Dũng', '1993-12-30', '5 Lê Duẩn, Đà Nẵng', '0978234567', 'dungnguyen@gmail.com');
-GO

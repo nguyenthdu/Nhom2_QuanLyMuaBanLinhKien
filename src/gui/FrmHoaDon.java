@@ -5,15 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.text.NumberFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -22,7 +15,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -31,19 +23,12 @@ import dao.*;
 
 import dao.ChiTietHoaDonDAO;
 import dao.DanhMucDAO;
-import dao.DonDatHangDAO;
 import dao.HoaDonDAO;
 import dao.KhachHangDAO;
 import dao.NhanVienDAO;
 import dao.LinhKienDAO;
+import entity.*;
 import entity.ChiTietHoaDon;
-import entity.ChiTietHoaDon;
-import entity.DanhMucLinhKien;
-import entity.DonDatHang;
-import entity.HoaDon;
-import entity.KhachHang;
-import entity.NhanVien;
-import entity.LinhKien;
 
 public class FrmHoaDon extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +38,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
     private JComboBox<Object> cBNhanVienThanhToan;
 	private JTextField txtSDTKH;
     private DefaultTableModel modelHoaDon, modelCTHoaDon;
-	private DonDatHangDAO ddh_dao;
+	private NhaCungCapDAO ncc_DAO;
 
 	private ChiTietHoaDonDAO cthd_dao;
 	private KhachHangDAO kh_dao;
@@ -91,6 +76,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 		nv_dao = new NhanVienDAO();
 		hd_dao = new HoaDonDAO();
 		cthd_dao = new ChiTietHoaDonDAO();
+		ncc_DAO = new NhaCungCapDAO();
 		JPanel panelTitle = new JPanel();
 		JLabel lblTitLe = new JLabel("DANH SÁCH HOÁ ĐƠN");
 		lblTitLe.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -143,6 +129,7 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 
 			cBNhanVienThanhToan.addItem(nv.getHoTen());
 		}
+		cBNhanVienThanhToan.addItem("Tất cả");
 		panel_1.add(cBNhanVienThanhToan);
 
 		JLabel lblSDTKH = new JLabel("Số điện thoại khách hàng");
@@ -212,9 +199,12 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 				txtSDTKH.setText(modelHoaDon.getValueAt(r, 2).toString());
 				dateNgayDat.setDate((Date) modelHoaDon.getValueAt(r, 4));
 				cBNhanVienThanhToan.setSelectedItem(modelHoaDon.getValueAt(r, 3));
+				DocDuLieuCTDH(MaHoaDon);
 
 			}
 		});
+		//TODO dọc    dữ liệu
+		docDuLieuHD();
 
 
 		JLabel lblChiTietHD = new JLabel("CHI TIẾT HÓA ĐƠN");
@@ -270,8 +260,86 @@ public class FrmHoaDon extends JPanel implements ActionListener {
 
 
 
+	public void docDuLieuHD() {
+		// TODO Auto-generated method stub
+		ArrayList<HoaDon> dsHD = hd_dao.layThongTin();
+		modelHoaDon.setRowCount(0);
+		double tong =0;
+		for (HoaDon hd : dsHD) {
+			KhachHang kh = kh_dao.TimKhachHang(hd.getKhachHang().getMaKH());
+			NhanVien nv = nv_dao.TimNhanVien(hd.getNhanVien().getMaNhanVien());
+			ArrayList<ChiTietHoaDon> dsCT = cthd_dao.TimHoaDon(hd.getMaHoaDon());
+			for (ChiTietHoaDon ct : dsCT) {
+				ArrayList<LinhKien> dsLK = lk_dao.timmLinhKien(ct.getLinhKien().getMaLinhKien());
+				for(LinhKien lk : dsLK) {
+					tong += ct.getSoLuong() * lk.getGiaBan();
+				}
+			}
+			String TongTien = vn.format(tong)+" VND";
+			modelHoaDon.addRow(
+					new Object[] { hd.getMaHoaDon(), kh.getTenKH(), kh.getSoDT(), nv.getHoTen(), hd.getNgayLapHD(),TongTien });
+		}
+	}
+	public void DocDuLieuCTDH(String id) {
+		ArrayList<ChiTietHoaDon> dsCT = cthd_dao.TimHoaDon(id);
+		ArrayList<DanhMucLinhKien> dsDM = dm_dao.layThongTin();
+		ArrayList<NhaCungCapLinhKien> dsNCC = ncc_DAO.layThongTin();
+		modelCTHoaDon.setRowCount(0);
 
+		for (ChiTietHoaDon ct : dsCT) {
+			// lấy dữ liệu chi tiết hóa đơn đưa vào bảng modelCTHoaDon
+			ArrayList<LinhKien> dsLK = lk_dao.timmLinhKien(ct.getLinhKien().getMaLinhKien());
+			for (LinhKien lk : dsLK) {
+				for(DanhMucLinhKien dm: dsDM) {
+					if(dm.getMaDanhMuc().equals(lk.getDanhMucLinhKien().getMaDanhMuc())) {
+						for(NhaCungCapLinhKien ncc: dsNCC) {
+							if(ncc.getMaNhaCungCap().equals(lk.getNhaCungCapLinhKien().getMaNhaCungCap())) {
+								modelCTHoaDon.addRow(new Object[] { lk.getMaLinhKien(), lk.getTenLinhKien(), ncc.getTenNCC(), lk.getThoiGianBaoHanh(), lk.getGiaBan(),
+										ct.getSoLuong(), dm.getTenDanhMuc() });
+							}
+						}
+					}
+				}
+			}
+		}
+
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Object o = e.getSource();
+		if(o.equals(btnTimHoaDon)){
+			String maHD = txtHoaDon.getText();
+			String soDT = txtSDTKH.getText();
+			String ngayDat;
+			if(dateNgayDat.getDate()==null){
+				ngayDat="";
+			}
+			String nv = cBNhanVienThanhToan.getSelectedItem().toString();
+			//   nếu nhân viênbangwfg tất cả thì truyền vào null
+			if (dateNgayDat.getDate() == null) {
+					 ngayDat = "";
+				} else {
+					ngayDat = dateNgayDat.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
+				}
+			TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<DefaultTableModel>(modelHoaDon);
+			tblHoaDon.setRowSorter(sorter);
+			List<RowFilter<Object,Object>>filters = new ArrayList<>();
+			filters.add(RowFilter.regexFilter(maHD, 0));
+			filters.add(RowFilter.regexFilter(soDT, 2));
+			filters.add(RowFilter.regexFilter(ngayDat, 4));
+			filters.add(RowFilter.regexFilter(nv, 3));
+			RowFilter<Object,Object> filter = RowFilter.andFilter(filters);
+			sorter.setRowFilter(filter);
+
+		}
+		if(o.equals(btnLamMoi)){
+			// xóa dữ liệu trong các ô text
+			txtHoaDon.setText("");
+			txtSDTKH.setText("");
+			dateNgayDat.setDate(null);
+			cBNhanVienThanhToan.setSelectedItem("Tất cả");
+			tblHoaDon.setRowSorter(null);
+			docDuLieuHD();
+		}
     }
 }

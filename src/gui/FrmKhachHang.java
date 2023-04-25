@@ -16,10 +16,7 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class FrmKhachHang extends JPanel implements ActionListener {
@@ -397,7 +394,7 @@ public class FrmKhachHang extends JPanel implements ActionListener {
 		model.setRowCount(0);
 		ArrayList<KhachHang> list = kh_dao.layThongTin();
 		for (KhachHang kh : list) {
-			String[] row = {kh.getMaKH(), kh.getTenKH(), kh.getSoDT(), kh.geteMail(), kh.getDiaChi()};
+			String[] row = {kh.getMaKH(), kh.getTenKH(), kh.getDiaChiKH(), kh.geteMail(), kh.getSoDT()};
 			model.addRow(row);
 		}
 	}

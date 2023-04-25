@@ -3,16 +3,16 @@ package entity;
 public class KhachHang {
     private String maKH;
 	private String tenKH;
-	private String soDT;
+	private String diaChiKH;
 	private String eMail;
-	private String diaChi;
+	private String soDT;
 
-	public KhachHang(String maKH, String tenKH, String soDT, String eMail, String diaChi) {
+	public KhachHang(String maKH, String tenKH, String diaChiKH, String eMail, String soDT) {
 		this.maKH = maKH;
 		this.tenKH = tenKH;
-		this.soDT = soDT;
+		this.diaChiKH = diaChiKH;
 		this.eMail = eMail;
-		this.diaChi = diaChi;
+		this.soDT = soDT;
 	}
 
 	public KhachHang(String maKH) {
@@ -38,12 +38,12 @@ public class KhachHang {
 		this.tenKH = tenKH;
 	}
 
-	public String getSoDT() {
-		return soDT;
+	public String getDiaChiKH() {
+		return diaChiKH;
 	}
 
-	public void setSoDT(String soDT) {
-		this.soDT = soDT;
+	public void setDiaChiKH(String diaChiKH) {
+		this.diaChiKH = diaChiKH;
 	}
 
 	public String geteMail() {
@@ -54,12 +54,12 @@ public class KhachHang {
 		this.eMail = eMail;
 	}
 
-	public String getDiaChi() {
-		return diaChi;
+	public String getSoDT() {
+		return soDT;
 	}
 
-	public void setDiaChi(String diaChi) {
-		this.diaChi = diaChi;
+	public void setSoDT(String soDT) {
+		this.soDT = soDT;
 	}
 
 	@Override
@@ -67,9 +67,9 @@ public class KhachHang {
 		return "KhachHang{" +
 				"maKH='" + maKH + '\'' +
 				", tenKH='" + tenKH + '\'' +
-				", soDT='" + soDT + '\'' +
+				", diaChi='" + diaChiKH + '\'' +
 				", eMail='" + eMail + '\'' +
-				", diaChi='" + diaChi + '\'' +
+				", soDienThoai='" + soDT + '\'' +
 				'}';
 	}
 }

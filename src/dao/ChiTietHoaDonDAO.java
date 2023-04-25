@@ -32,9 +32,8 @@ public class ChiTietHoaDonDAO{
 			while (rs.next()) {
                 LinhKien lk = new LinhKien(rs.getString(1));
                 HoaDon hd = new HoaDon(rs.getString(2));
-                DonDatHang ddh = new DonDatHang(rs.getString(3));
-                int soLuong = rs.getInt(4);
-                ChiTietHoaDon ct = new ChiTietHoaDon(lk,soLuong,hd,ddh);
+                int soLuong = rs.getInt(3);
+                ChiTietHoaDon ct = new ChiTietHoaDon(lk,hd,soLuong);
                 dsChiTietHoaDon.add(ct);
             }
 		} catch (SQLException e) {
@@ -48,14 +47,13 @@ public class ChiTietHoaDonDAO{
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		PreparedStatement statement = null;
-		String SQL = "INSERT INTO ChiTietHD VALUES (?,?,?,?)";
+		String SQL = "INSERT INTO ChiTietHD VALUES (?,?,?)";
 		int n = 0;
 		try {
 			statement = con.prepareStatement(SQL);
             statement.setString(1, ct.getLinhKien().getMaLinhKien());
             statement.setString(2, ct.getHoaDon().getMaHoaDon());
-            statement.setString(3, ct.getDonDatHang().getMaDonDatHang());
-            statement.setInt(4, ct.getSoLuong());
+            statement.setInt(3, ct.getSoLuong());
             n = statement.executeUpdate();
         } catch (SQLException e) {
 			// TODO: handle exception
@@ -69,5 +67,40 @@ public class ChiTietHoaDonDAO{
 			}
 		}
 		return n > 0;
+	}
+		public ArrayList<ChiTietHoaDon> TimHoaDon(String id) {
+		ArrayList<ChiTietHoaDon> ds = new ArrayList<ChiTietHoaDon>();
+
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		try {
+
+			String sql = "select * from ChiTietHD where maHoaDon=?";
+			statement = con.prepareStatement(sql);
+			statement.setString(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+
+				LinhKien lk = new LinhKien(rs.getString(1));
+                HoaDon hd = new HoaDon(rs.getString(2));
+                int soLuong = rs.getInt(3);
+                ChiTietHoaDon ct = new ChiTietHoaDon(lk,hd,soLuong);
+                ds.add(ct);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ds;
 	}
 }

@@ -1,10 +1,9 @@
 package dao;
 
 import connectDB.ConnectDB;
-import entity.DanhMucLinhKien;
-import entity.LinhKien;
-import entity.NhaCungCapLinhKien;
+import entity.*;
 
+import javax.swing.*;
 import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
@@ -112,7 +111,7 @@ public class LinhKienDAO {
             statement.setString(1,maLK);
             n = statement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(null, "Không thể xóa linh kiện này vì linh kiện này đã được sử dụng trong hóa đơn");
         }finally {
             try {
                 statement.close();
@@ -178,6 +177,45 @@ public class LinhKienDAO {
 		}
 		return n>0;
 	}
+    // tìm linh kiện
+    public ArrayList<LinhKien> timmLinhKien(String id) {
+		ArrayList<LinhKien> ds = new ArrayList<LinhKien>();
 
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		try {
+
+			String sql = "select * from LinhKien where maLinhKien=?";
+			statement = con.prepareStatement(sql);
+			statement.setString(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+
+				String maLK = rs.getString(1);
+                String tenLK = rs.getString(2);
+                int soLuong = rs.getInt(3);
+                double giaBan = rs.getDouble(4);
+                int thoiGianBH = rs.getInt(5);
+                DanhMucLinhKien danhMuc = new DanhMucLinhKien(rs.getString(6));
+                NhaCungCapLinhKien nhaCungCap = new NhaCungCapLinhKien(rs.getString(7));
+                LinhKien lk = new LinhKien(maLK, tenLK,soLuong,giaBan,thoiGianBH,danhMuc,nhaCungCap);
+                ds.add(lk);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return ds;
+	}
 
 }

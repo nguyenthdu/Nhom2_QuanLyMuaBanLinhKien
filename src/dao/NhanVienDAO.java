@@ -98,6 +98,42 @@ public class NhanVienDAO {
         }
         return n>0;
     }
+    public NhanVien TimNhanVien(String id) {
+		NhanVien nv = new NhanVien();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		try {
+
+			String sql = "select * from NhanVien where maNhanVien=?";
+			statement = con.prepareStatement(sql);
+			statement.setString(1, id);
+			ResultSet rs = statement.executeQuery();
+			while (rs.next()) {
+
+				String maNV = rs.getString(1);
+				String HoTenNV = rs.getString(2);
+				Date ngaySinh = rs.getDate(3);
+				String DiaChi = rs.getString(4);
+				String SDT = rs.getString(5);
+                String email = rs.getString(6);
+
+				nv = new NhanVien(maNV, HoTenNV, ngaySinh, DiaChi, SDT, email);
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+
+		} finally {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return nv;
+	}
     //kiểm tra mã nhân viên
     public boolean kiemTraMaNV(String maNV){
         ConnectDB.getInstance();

@@ -4,17 +4,17 @@ public class ChiTietHoaDon {
     private LinhKien linhKien;
     private int soLuong;
     private HoaDon hoaDon;
-    private DonDatHang donDatHang;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(LinhKien linhKien, int soLuong, HoaDon hoaDon, DonDatHang donDatHang) {
+    public ChiTietHoaDon(LinhKien linhKien, HoaDon hoaDon, int soLuong) {
         this.linhKien = linhKien;
         this.soLuong = soLuong;
         this.hoaDon = hoaDon;
-        this.donDatHang = donDatHang;
     }
+
+
 
     public LinhKien getLinhKien() {
         return linhKien;
@@ -40,22 +40,12 @@ public class ChiTietHoaDon {
         this.hoaDon = hoaDon;
     }
 
-    public DonDatHang getDonDatHang() {
-        return donDatHang;
-    }
-
-    public void setDonDatHang(DonDatHang donDatHang) {
-        this.donDatHang = donDatHang;
-    }
-
     @Override
     public String toString() {
         return "ChiTietHoaDon{" +
                 "linhKien=" + linhKien +
                 ", soLuong=" + soLuong +
-
                 ", hoaDon=" + hoaDon +
-                ", donDatHang=" + donDatHang +
                 '}';
     }
 }
