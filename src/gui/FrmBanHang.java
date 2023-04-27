@@ -214,7 +214,7 @@ public class FrmBanHang extends JPanel implements ActionListener {
 		tblSanPham.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		scrollPane.setViewportView(tblSanPham);
 		//DocDuLieuSP();
-		scrollPane.setViewportView(tblSanPham);
+
 		tblSanPham.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -520,6 +520,7 @@ public class FrmBanHang extends JPanel implements ActionListener {
 						int soLuongCu = Integer.parseInt(tblSanPham.getValueAt(row, 5).toString());
 						int soLuongMoi = soLuongCu - soluong;
 						tblSanPham.setValueAt(soLuongMoi, row, 5);
+
 					}
 				}
 
@@ -593,9 +594,8 @@ public class FrmBanHang extends JPanel implements ActionListener {
 		}
 
 		if (o.equals(btnThanhToan)) {
-			String MaHoaDon = "";
-			double n = (Math.random()) * ((10000 - 1) + 1) + 1;
-			int i = (int) n, a = 0;
+
+
 			int model_count = model_DonHang.getRowCount();
 			if (model_count == 0) {
 				JOptionPane.showMessageDialog(null,
@@ -635,8 +635,8 @@ public class FrmBanHang extends JPanel implements ActionListener {
 							LinhKien lk = new LinhKien(maLK);
 							int soluongsp = Integer.parseInt(soLuong);
 							int sl = Integer.parseInt(soLuongSP);
-							//lay số lượng t
-							DonDatHang ddh = new DonDatHang();
+
+
 							ChiTietHoaDon cthd = new ChiTietHoaDon(lk, hd,soluongsp);
 							ctHD_dao.themDonHang(cthd);
 							// trừ số lượng trong bảng lĩnh kiện
